@@ -1,0 +1,9 @@
+[package]
+name = "stats"
+version = "0.0.1"
+description = "Score normalisation and summary helpers."
+authors = ["Quone Examples"]
+
+[dependencies]
+purrr = ">= 1.0"
+dplyr = ">= 1.1"
