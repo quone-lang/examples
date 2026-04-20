@@ -75,9 +75,10 @@ Either path produces:
 
 ## Generated R
 
-[`pharma-analysis.R`](pharma-analysis.R) is the checked-in output of
-`quonec build`. It uses qualified names (`dplyr::`, `readr::`)
-throughout and is the kind of file an R reviewer can read top-to-bottom
-without surprise -- the design goal in
+[`pharma-analysis.R`](pharma-analysis.R) is the `quonec build` output,
+hand-rewrapped to 80 columns for readability. The semantics are
+unchanged from what the compiler emits: qualified `dplyr::` / `readr::`
+calls, R's native pipe, no Quone runtime. It is the kind of file an R
+reviewer can read top-to-bottom without surprise -- the design goal in
 [LANGUAGE.md section 1.2](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md#12-design-principles),
 principle 7.
