@@ -1,0 +1,7 @@
+subject_id,arm,age,weight_kg,height_cm
+S001,Active,52,78,175
+S002,Placebo,67,82,168
+S003,Active,45,95,180
+S004,Placebo,71,68,162
+S005,Active,38,71,170
+S006,Placebo,59,88,172

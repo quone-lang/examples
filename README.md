@@ -14,6 +14,7 @@ mirroring R's `.R`.
 | [`scores/`](scores/)                           | literals, vectors, `map`, annotated function definitions                                       |
 | [`dataframe-pipeline/`](dataframe-pipeline/)   | every normatively-typed dataframe verb (`filter`, `mutate`, `summarize`, `group_by`, `arrange`) |
 | [`decoders/`](decoders/)                       | typed CSV decoder pattern using foreign imports against `readr`                                |
+| [`pharma-analysis/`](pharma-analysis/)         | end-to-end ADaM-style clinical-trial analysis: read CSVs, derive variables, join, summarise   |
 | [`stats-package/`](stats-package/)             | multi-module package with `Stats.Transform`, `Stats.Summary`, `Data.Loader`                    |
 
 ## Compile from R (recommended)

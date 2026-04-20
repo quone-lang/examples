@@ -1,0 +1,9 @@
+subject_id,event_term,severity,treatment_emergent
+S001,Headache,1,1
+S001,Nausea,2,1
+S002,Fatigue,3,1
+S003,Headache,1,0
+S004,Rash,2,1
+S004,Nausea,1,1
+S005,Headache,2,1
+S006,Dizziness,3,1

@@ -1,0 +1,7 @@
+subject_id,arm,age,weight_kg,height_cm,bmi,bmi_class,age_class,over_65,n_events,mean_severity
+S001,Active,52,78,175,25.46938775510204,Overweight,18-64,FALSE,2,1.5
+S002,Placebo,67,82,168,29.053287981859416,Overweight,>=65,TRUE,1,3
+S003,Active,45,95,180,29.320987654320987,Overweight,18-64,FALSE,NA,NA
+S004,Placebo,71,68,162,25.910684346898332,Overweight,>=65,TRUE,2,1.5
+S005,Active,38,71,170,24.56747404844291,Normal,18-64,FALSE,1,2
+S006,Placebo,59,88,172,29.745808545159548,Overweight,18-64,FALSE,1,3
