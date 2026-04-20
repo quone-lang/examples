@@ -41,19 +41,22 @@ events <- read_csv "adae.csv"
 
 
 derived_subjects <-
-    subjects |> mutate { bmi = bmi weight_kg height_cm
-                       , bmi_class = bmi_category (bmi weight_kg height_cm)
-                       , age_class = age_band age
-                       , over_65 = age >= 65.0
-                       }
+    subjects |> 
+        mutate { bmi = bmi weight_kg height_cm
+               , bmi_class = bmi_category (bmi weight_kg height_cm)
+               , age_class = age_band age
+               , over_65 = age >= 65.0
+               }
 
 
 treatment_emergent <-
-    events |> filter (treatment_emergent == 1.0)
+    events 
+        |> filter (treatment_emergent == 1.0)
 
 
 per_subject_ae <-
-    treatment_emergent |> arrange { subject_id }
+    treatment_emergent 
+        |> arrange { subject_id }
         |> group_by { subject_id }
         |> summarize { n_events = length severity
                      , mean_severity = mean severity
@@ -61,7 +64,8 @@ per_subject_ae <-
 
 
 per_arm_demog <-
-    derived_subjects |> arrange { arm }
+    derived_subjects 
+        |> arrange { arm }
         |> group_by { arm }
         |> summarize { n_subjects = length subject_id
                      , mean_age = mean age
@@ -70,10 +74,12 @@ per_arm_demog <-
 
 
 report <-
-    derived_subjects |> arrange { subject_id }
+    derived_subjects 
+        |> arrange { subject_id }
         |> left_join per_subject_ae
         |> write_csv "per_subject_report.csv"
 
 
 main <-
-    per_arm_demog |> write_csv "per_arm_demog.csv"
+    per_arm_demog 
+        |> write_csv "per_arm_demog.csv"
