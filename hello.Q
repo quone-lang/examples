@@ -2,7 +2,7 @@
 #'
 #' The simplest possible Quone program. Compile with:
 #'
-#'     quonec build hello.Q
+#'     quonec compile hello.Q
 #'     Rscript hello.R
 
 main <- "Hello, world!"

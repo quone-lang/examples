@@ -1,67 +1,41 @@
-# Quone examples
+# Quone Examples
 
-Sample [Quone](https://github.com/quone-lang/compiler) programs that
-demonstrate the v0.0.1 surface. They double as documentation and as
-fixtures for the compiler test suite.
+These examples target the initial Quone release described in
+`compiler/docs/LANGUAGE2.md`.
 
-Quone source files use the uppercase `.Q` extension
-([LANGUAGE.md section 3.1](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md)),
-mirroring R's `.R`.
+The examples focus on the first supported workflow:
 
-| Example                                        | What it shows                                                                                  |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| [`hello.Q`](hello.Q)                           | smallest possible script                                                                       |
-| [`scores/`](scores/)                           | literals, vectors, `map`, annotated function definitions                                       |
-| [`dataframe-pipeline/`](dataframe-pipeline/)   | every normatively-typed dataframe verb (`filter`, `mutate`, `summarize`, `group_by`, `arrange`) |
-| [`decoders/`](decoders/)                       | typed CSV decoder pattern using foreign imports against `readr`                                |
-| [`pharma-analysis/`](pharma-analysis/)         | end-to-end ADaM-style clinical-trial analysis: read CSVs, derive variables, join, summarise   |
-| [`stats-package/`](stats-package/)             | multi-module package with `Stats.Transform`, `Stats.Summary`, `Data.Loader`                    |
+- read CSV data through typed decoders
+- transform dataframes with dplyr-style verbs
+- make missingness explicit with `Maybe`
+- use grouped summaries and typed joins
+- call existing R functions through foreign imports
 
-## Compile from R (recommended)
+## Examples
 
-The [quone-lang/quone](https://github.com/quone-lang/quone) R
-package wraps the compiler and is the smoothest path:
+| Directory | What it shows |
+| --- | --- |
+| `hello.Q` | smallest possible Quone script |
+| `scores/` | vectors, functions, math/stat helpers |
+| `dataframe-pipeline/` | filter, mutate, summarize, group_by, arrange |
+| `decoders/` | typed CSV decoder shape |
+| `pharma-analysis/` | larger typed dataframe workflow |
+
+## Compile
+
+From R:
 
 ```r
-# install.packages("pak")
-pak::pak("quone-lang/quone")
-quone::install_compiler()
-
-quone::build("examples/scores/scores.Q")
-quone::run("examples/scores/scores.Q")
-
-quone::document("examples/stats-package")   # build + roxygenise()
-quone::install("examples/stats-package")    # then install into R
+quone::check("examples/scores/scores.Q")
+quone::compile("examples/scores/scores.Q")
 ```
 
-## Compile from the CLI
+From the CLI:
 
 ```sh
-# Single script
-quonec build examples/scores/scores.Q
-Rscript examples/scores/scores.R
-
-# Multi-module package
-quonec build --package examples/stats-package
-R -e "roxygen2::roxygenise('examples/stats-package/build')"
+quonec check examples/scores/scores.Q
+quonec compile examples/scores/scores.Q
 ```
 
-The package build produces `stats-package/build/` containing:
+Examples should be compiled or checked as part of release validation.
 
-- `DESCRIPTION` (with `Imports:` inferred from foreign imports,
-  dataframe-verb usage, record-update usage, and the
-  `[dependencies]` table in `quone.toml`)
-- `NAMESPACE` (one `export(name)` line per `@export`-tagged binding;
-  carries the roxygen2 sentinel so subsequent `roxygenise()` calls
-  refresh it)
-- `R/<module>.R` (one per `.Q` file, kebab-cased per
-  [LANGUAGE.md section 14.6](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md))
-
-## Sibling repos
-
-- **[quone-lang/compiler](https://github.com/quone-lang/compiler)** --
-  the `quonec` compiler.
-- **[quone-lang/quone](https://github.com/quone-lang/quone)** -- R
-  companion package.
-- **[quone-lang/website](https://github.com/quone-lang/website)** --
-  source for [quone-lang.org](https://quone-lang.org).

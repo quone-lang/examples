@@ -47,14 +47,14 @@ deliverables touch disk.
   `summarize`, `group_by`, `arrange` -- composed through `|>`
 - `left_join` with auto-detected join keys (joins are accepted by the
   parser but not yet column-typed in
-  [v0.0.1](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md#87-dataframe-pipeline-typing),
+  [initial release](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE2.md#87-dataframe-pipeline-typing),
   so we put the join late in the pipeline, immediately before writing)
 
 ## Run it
 
 ```sh
 # From the repo root, with the `quonec` CLI on PATH:
-quonec build examples/pharma-analysis/pharma-analysis.Q
+quonec compile examples/pharma-analysis/pharma-analysis.Q
 cd examples/pharma-analysis && Rscript pharma-analysis.R
 ```
 
@@ -62,7 +62,7 @@ Or, equivalently, through the
 [R companion package](https://github.com/quone-lang/quone):
 
 ```r
-quone::run("examples/pharma-analysis/pharma-analysis.Q")
+quone::compile("examples/pharma-analysis/pharma-analysis.Q")
 ```
 
 Either path produces:
@@ -75,10 +75,10 @@ Either path produces:
 
 ## Generated R
 
-[`pharma-analysis.R`](pharma-analysis.R) is the `quonec build` output,
+[`pharma-analysis.R`](pharma-analysis.R) is the `quonec compile` output,
 hand-rewrapped to 80 columns for readability. The semantics are
 unchanged from what the compiler emits: qualified `dplyr::` / `readr::`
 calls, R's native pipe, no Quone runtime. It is the kind of file an R
 reviewer can read top-to-bottom without surprise -- the design goal in
-[LANGUAGE.md section 1.2](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md#12-design-principles),
+[LANGUAGE2.md section 1.2](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE2.md#12-design-principles),
 principle 7.
