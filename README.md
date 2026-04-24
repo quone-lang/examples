@@ -1,17 +1,26 @@
 # Quone Examples
 
-These examples target the initial Quone release described in
-`compiler/docs/LANGUAGE2.md`.
+These examples show Quone's first supported workflow: write typed data
+transformation code, compile it to readable R, and run the R output.
 
-The examples focus on the first supported workflow:
+## Start Here
 
-- read CSV data through typed decoders
-- transform dataframes with dplyr-style verbs
-- make missingness explicit with `Maybe`
-- use grouped summaries and typed joins
-- call existing R functions through foreign imports
+Use the pharma analysis as the canonical proof example:
 
-## Examples
+[`pharma-analysis/`](pharma-analysis/)
+
+It demonstrates a realistic end-to-end workflow:
+
+- read CSV data
+- derive subject-level variables
+- filter and summarize event data
+- left-join summaries back to subjects
+- write generated R and final CSV outputs
+
+The example is small enough to inspect, but realistic enough to show why static
+checks matter for R-style data transformation work.
+
+## Other Examples
 
 | Directory | What it shows |
 | --- | --- |
@@ -19,23 +28,24 @@ The examples focus on the first supported workflow:
 | `scores/` | vectors, functions, math/stat helpers |
 | `dataframe-pipeline/` | filter, mutate, summarize, group_by, arrange |
 | `decoders/` | typed CSV decoder shape |
-| `pharma-analysis/` | larger typed dataframe workflow |
+| `pharma-analysis/` | full CSV-to-report workflow |
 
 ## Compile
 
 From R:
 
 ```r
-quone::check("examples/scores/scores.Q")
-quone::compile("examples/scores/scores.Q")
+quone::check("examples/pharma-analysis/pharma-analysis.Q")
+quone::compile("examples/pharma-analysis/pharma-analysis.Q")
 ```
 
 From the CLI:
 
 ```sh
-quonec check examples/scores/scores.Q
-quonec compile examples/scores/scores.Q
+quonec check examples/pharma-analysis/pharma-analysis.Q
+quonec compile examples/pharma-analysis/pharma-analysis.Q
 ```
 
-Examples should be compiled or checked as part of release validation.
+Generated `.R` files are intentionally readable and should be reviewed as part
+of each example.
 

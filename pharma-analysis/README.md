@@ -40,15 +40,10 @@ deliverables touch disk.
   `dplyr.if_else`)
 - annotated top-level functions and the standard prelude (`length`,
   `mean`)
-- vectorised conditional via `dplyr::if_else` (Quone's built-in `if` /
-  `case` lower to scalar R `if`, which is not what you want inside
-  `dplyr::mutate`; `if_else` is the column-wise equivalent)
-- five of the normatively-typed dataframe verbs -- `filter`, `mutate`,
-  `summarize`, `group_by`, `arrange` -- composed through `|>`
-- `left_join` with auto-detected join keys (joins are accepted by the
-  parser but not yet column-typed in
-  [initial release](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE2.md#87-dataframe-pipeline-typing),
-  so we put the join late in the pipeline, immediately before writing)
+- vectorized conditional via `dplyr::if_else`
+- typed dataframe verbs -- `filter`, `mutate`, `summarize`, `group_by`,
+  `arrange` -- composed through `|>`
+- `left_join` to combine derived subject data with per-subject event summaries
 
 ## Run it
 
@@ -80,5 +75,5 @@ hand-rewrapped to 80 columns for readability. The semantics are
 unchanged from what the compiler emits: qualified `dplyr::` / `readr::`
 calls, R's native pipe, no Quone runtime. It is the kind of file an R
 reviewer can read top-to-bottom without surprise -- the design goal in
-[LANGUAGE2.md section 1.2](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE2.md#12-design-principles),
+[LANGUAGE.md section 1.2](https://github.com/quone-lang/compiler/blob/main/docs/LANGUAGE.md#12-design-principles),
 principle 7.
